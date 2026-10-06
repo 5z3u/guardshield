@@ -11,6 +11,23 @@
 </head>
 <body>
 
+<!-- ========== 矢量图标库 ========== -->
+<svg class="sprite" aria-hidden="true" focusable="false"><defs>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 4.6-3.3 7.7-8 8.9C7.3 19.7 4 16.6 4 12V6z"/><path d="M9.2 12.2l2 2 3.6-3.9"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2.2"/><path d="M8.2 10.5V7.4a3.8 3.8 0 017.6 0v3.1"/></symbol>
+  <symbol id="i-card" viewBox="0 0 24 24"><rect x="2.8" y="5.5" width="18.4" height="13" rx="2.2"/><path d="M2.8 9.8h18.4M6.5 14.6h3.4"/></symbol>
+  <symbol id="i-block" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.6"/><path d="M5.9 5.9l12.2 12.2"/></symbol>
+  <symbol id="i-eyeoff" viewBox="0 0 24 24"><path d="M3 3l18 18"/><path d="M10.6 6.1A9.6 9.6 0 0112 6c5 0 9 6 9 6a15 15 0 01-2.4 3"/><path d="M6.3 8.3A15 15 0 003 12s4 6 9 6a9.4 9.4 0 003.4-.6"/><path d="M9.9 10.3a3 3 0 004.2 4.2"/></symbol>
+  <symbol id="i-vault" viewBox="0 0 24 24"><rect x="3.2" y="4.5" width="17.6" height="15" rx="2.2"/><circle cx="12" cy="12" r="3.1"/><path d="M12 4.5v2.2M12 17.3v2.2M5.4 12h2.2M16.4 12h2.2"/></symbol>
+  <symbol id="i-scan" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.6"/><path d="M20 20l-4.4-4.4"/><path d="M8.4 11.4l1.8 1.8 3.3-3.6"/></symbol>
+  <symbol id="i-box" viewBox="0 0 24 24"><path d="M12 3.2l8 4.1v9.4L12 20.8l-8-4.1V7.3z"/><path d="M4 7.3l8 4.1 8-4.1M12 11.4v9.4"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4.5 7h15M9.5 7V4.8h5V7M6.5 7l1 12.4h9l1-12.4"/><path d="M10.4 10.6v5.6M13.6 10.6v5.6"/></symbol>
+  <symbol id="i-shieldlock" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 4.6-3.3 7.7-8 8.9C7.3 19.7 4 16.6 4 12V6z"/><rect x="9.4" y="11.4" width="5.2" height="4.4" rx="1"/><path d="M10.6 11.4v-1.2a1.4 1.4 0 012.8 0v1.2"/></symbol>
+  <symbol id="i-power" viewBox="0 0 24 24"><path d="M12 3.6v7.2"/><path d="M7.2 6.6a7.6 7.6 0 109.6 0"/></symbol>
+  <symbol id="i-tools" viewBox="0 0 24 24"><rect x="3.4" y="3.4" width="7.2" height="7.2" rx="1.6"/><rect x="13.4" y="3.4" width="7.2" height="7.2" rx="1.6"/><rect x="3.4" y="13.4" width="7.2" height="7.2" rx="1.6"/><rect x="13.4" y="13.4" width="7.2" height="7.2" rx="1.6"/></symbol>
+  <symbol id="i-wrench" viewBox="0 0 24 24"><path d="M14.8 4.6a4.8 4.8 0 015.9 6.2l-8 8-3.1.8.8-3.1z"/><circle cx="16.2" cy="7.8" r="1.5"/></symbol>
+</defs></svg>
+
 <!-- ========== 开机启动动画 ========== -->
 <div id="boot" class="boot">
   <div class="boot-inner">
@@ -24,10 +41,8 @@
       <path class="chk" d="M33 49 L45 62 L69 37"/>
     </svg>
     <div class="brand">GUARDSHIELD</div>
-    <div class="sub">SECURE BOOT · 守护盾终端防护引擎</div>
-    <div class="log" id="bootlog"></div>
+    <div class="sub">守护盾终端防护引擎</div>
     <div class="bar"><i id="bootbar"></i></div>
-    <div class="pct" id="bootpct">0%</div>
   </div>
 </div>
 
@@ -50,7 +65,7 @@
       <!-- 应用栏 -->
       <div class="appbar" id="appbar">
         <span class="ab-title">应用详情</span>
-        <span class="ab-ico">⋮</span>
+        <span class="ab-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="5.5" r="1.7"/><circle cx="12" cy="12" r="1.7"/><circle cx="12" cy="18.5" r="1.7"/></svg></span>
       </div>
 
       <div class="content">
@@ -91,10 +106,10 @@
             <div class="shot">
               <div class="shot-ui dark">
                 <div class="su-top">应用锁</div>
-                <div class="su-app"><i></i>微信<b>🔒</b></div>
-                <div class="su-app"><i></i>相册<b>🔒</b></div>
-                <div class="su-app"><i></i>设置<b>🔒</b></div>
-                <div class="su-app"><i></i>支付类应用<b>🔒</b></div>
+                <div class="su-app"><i></i>微信<svg class="lk"><use href="#i-lock"/></svg></div>
+                <div class="su-app"><i></i>相册<svg class="lk"><use href="#i-lock"/></svg></div>
+                <div class="su-app"><i></i>设置<svg class="lk"><use href="#i-lock"/></svg></div>
+                <div class="su-app"><i></i>支付类应用<svg class="lk"><use href="#i-lock"/></svg></div>
               </div>
             </div>
             <div class="shot">
@@ -125,18 +140,18 @@
         <section class="block reveal">
           <h2>核心功能</h2>
           <div class="grid">
-            <div class="card"><span class="ico">🛡️</span><h3>主动防御引擎</h3><p>常驻后台实时扫描，拦截恶意覆盖层与锁屏勒索行为。</p></div>
-            <div class="card"><span class="ico">🔒</span><h3>应用锁</h3><p>为任意应用加锁，进入需验证，防止被他人窥探或篡改。</p></div>
-            <div class="card"><span class="ico">💳</span><h3>支付保护</h3><p>支付场景自动扫描运行环境，识别并阻断假冒支付页面。</p></div>
-            <div class="card"><span class="ico">📵</span><h3>诈骗拦截</h3><p>识别可疑短信、来电与诱导链接，降低被骗风险。</p></div>
-            <div class="card"><span class="ico">🚫</span><h3>广告拦截</h3><p>拦截应用内广告与跟踪组件，减少骚扰与数据外泄。</p></div>
-            <div class="card"><span class="ico">🗄️</span><h3>文件保险箱</h3><p>私密文件加密存放，需验证后才能访问。</p></div>
-            <div class="card"><span class="ico">🔍</span><h3>隐私检查</h3><p>审计已装应用的权限申请，标记高风险项。</p></div>
-            <div class="card"><span class="ico">📦</span><h3>沙箱隔离</h3><p>对可疑应用隔离运行，避免影响真实系统。</p></div>
-            <div class="card"><span class="ico">🧹</span><h3>深度清理</h3><p>清理残留文件与缓存，释放存储空间。</p></div>
-            <div class="card"><span class="ico">🧷</span><h3>防卸载保护</h3><p>借助设备管理器防止防护被恶意卸载或停用。</p></div>
-            <div class="card"><span class="ico">⚡</span><h3>开机自启</h3><p>设备启动即自动加载防护，无需手动开启。</p></div>
-            <div class="card"><span class="ico">🧰</span><h3>工具箱 30+</h3><p>电池、存储、网络、内存、CPU、信号、传感器等实用工具。</p></div>
+            <div class="card"><svg class="ico"><use href="#i-shield"/></svg><h3>主动防御引擎</h3><p>常驻后台实时扫描，拦截恶意覆盖层与锁屏勒索行为。</p></div>
+            <div class="card"><svg class="ico"><use href="#i-lock"/></svg><h3>应用锁</h3><p>为任意应用加锁，进入需验证，防止被他人窥探或篡改。</p></div>
+            <div class="card"><svg class="ico"><use href="#i-card"/></svg><h3>支付保护</h3><p>支付场景自动扫描运行环境，识别并阻断假冒支付页面。</p></div>
+            <div class="card"><svg class="ico"><use href="#i-block"/></svg><h3>诈骗拦截</h3><p>识别可疑短信、来电与诱导链接，降低被骗风险。</p></div>
+            <div class="card"><svg class="ico"><use href="#i-eyeoff"/></svg><h3>广告拦截</h3><p>拦截应用内广告与跟踪组件，减少骚扰与数据外泄。</p></div>
+            <div class="card"><svg class="ico"><use href="#i-vault"/></svg><h3>文件保险箱</h3><p>私密文件加密存放，需验证后才能访问。</p></div>
+            <div class="card"><svg class="ico"><use href="#i-scan"/></svg><h3>隐私检查</h3><p>审计已装应用的权限申请，标记高风险项。</p></div>
+            <div class="card"><svg class="ico"><use href="#i-box"/></svg><h3>沙箱隔离</h3><p>对可疑应用隔离运行，避免影响真实系统。</p></div>
+            <div class="card"><svg class="ico"><use href="#i-trash"/></svg><h3>深度清理</h3><p>清理残留文件与缓存，释放存储空间。</p></div>
+            <div class="card"><svg class="ico"><use href="#i-shieldlock"/></svg><h3>防卸载保护</h3><p>借助设备管理器防止防护被恶意卸载或停用。</p></div>
+            <div class="card"><svg class="ico"><use href="#i-power"/></svg><h3>开机自启</h3><p>设备启动即自动加载防护，无需手动开启。</p></div>
+            <div class="card"><svg class="ico"><use href="#i-tools"/></svg><h3>工具箱 30+</h3><p>电池、存储、网络、内存、CPU、信号、传感器等实用工具。</p></div>
           </div>
         </section>
 
