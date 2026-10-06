@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#05070d">
+<title>GuardShield 守护盾 · 安卓终端防护引擎</title>
+<meta name="description" content="GuardShield 守护盾 v5.28 —— 主动防御、应用锁、支付保护、诈骗拦截的一体化安卓防护软件，提供官方 APK 下载。">
+<link rel="icon" type="image/png" href="./assets/icon.png">
+<link rel="stylesheet" href="./assets/style.css">
+</head>
+<body>
+
+<!-- ========== 开机启动动画 ========== -->
+<div id="boot" class="boot">
+  <div class="boot-inner">
+    <svg class="shield" viewBox="0 0 100 100" aria-label="启动图标">
+      <defs>
+        <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#5eead4"/><stop offset="100%" stop-color="#38bdf8"/>
+        </linearGradient>
+      </defs>
+      <path class="sh" d="M50 6 L90 22 V46 C90 71 70 88 50 96 C30 88 10 71 10 46 V22 Z"/>
+      <path class="chk" d="M33 49 L45 62 L69 37"/>
+    </svg>
+    <div class="brand">GUARDSHIELD</div>
+    <div class="sub">SECURE BOOT · 守护盾终端防护引擎</div>
+    <div class="log" id="bootlog"></div>
+    <div class="bar"><i id="bootbar"></i></div>
+    <div class="pct" id="bootpct">0%</div>
+  </div>
+</div>
+
+<!-- ========== 设备机身 ========== -->
+<div class="stage">
+  <div class="phone">
+    <div class="notch"></div>
+    <div class="screen" id="screen">
+
+      <!-- 状态栏 -->
+      <div class="statusbar">
+        <span class="clock" id="clock">--:--</span>
+        <span class="sbsys">
+          <i class="sig"><b></b><b></b><b></b><b></b></i>
+          <svg class="wifi" viewBox="0 0 24 24"><path d="M2 8.5a15 15 0 0 1 20 0M5.5 12a10 10 0 0 1 13 0M9 15.5a5 5 0 0 1 6 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="19" r="1.6" fill="currentColor"/></svg>
+          <i class="batt"><b></b></i>
+        </span>
+      </div>
+
+      <!-- 应用栏 -->
+      <div class="appbar" id="appbar">
+        <span class="ab-title">应用详情</span>
+        <span class="ab-ico">⋮</span>
+      </div>
+
+      <div class="content">
+
+        <!-- Hero -->
+        <section class="hero reveal">
+          <div class="ic-wrap"><img src="./assets/icon.png" alt="GuardShield 图标" class="appicon"></div>
+          <div class="hero-txt">
+            <h1>GuardShield <em>守护盾</em></h1>
+            <p class="dev">GuardShield Security Lab · 终端防护</p>
+            <div class="chips">
+              <span class="chip">v5.28</span>
+              <span class="chip">12.63 MB</span>
+              <span class="chip">Android 5.0+</span>
+              <span class="chip ok">● 防护中</span>
+            </div>
+          </div>
+          <a class="btn-install ripple" href="./GuardShield.apk" download>
+            <svg viewBox="0 0 24 24" class="dl"><path d="M12 3v12m0 0 4.5-4.5M12 15l-4.5-4.5M4 19h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            下载安装 · APK
+          </a>
+          <p class="hint">官方原包 · SHA256 可校验 · 无需登录</p>
+        </section>
+
+        <!-- 截图预览 -->
+        <section class="block reveal">
+          <h2>界面预览</h2>
+          <div class="shots">
+            <div class="shot">
+              <div class="shot-ui dark">
+                <div class="su-top">主动防御</div>
+                <div class="su-ring"><span>防护中</span></div>
+                <div class="su-row"><i></i>覆盖层拦截<b>已开启</b></div>
+                <div class="su-row"><i></i>锁屏勒索拦截<b>已开启</b></div>
+                <div class="su-row"><i></i>实时扫描<b>已开启</b></div>
+              </div>
+            </div>
+            <div class="shot">
+              <div class="shot-ui dark">
+                <div class="su-top">应用锁</div>
+                <div class="su-app"><i></i>微信<b>🔒</b></div>
+                <div class="su-app"><i></i>相册<b>🔒</b></div>
+                <div class="su-app"><i></i>设置<b>🔒</b></div>
+                <div class="su-app"><i></i>支付类应用<b>🔒</b></div>
+              </div>
+            </div>
+            <div class="shot">
+              <div class="shot-ui dark">
+                <div class="su-top">支付保护</div>
+                <div class="su-scan"></div>
+                <div class="su-row"><i class="g"></i>支付环境<b>安全</b></div>
+                <div class="su-row"><i class="g"></i>剪贴板监听<b>无风险</b></div>
+                <div class="su-row"><i class="g"></i>假冒页面<b>已拦截</b></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 介绍 -->
+        <section class="block reveal">
+          <h2>关于本应用</h2>
+          <p class="para">
+            GuardShield 守护盾是一款面向安卓终端的一体化防护软件，重点应对<b>恶意锁屏（锁机）</b>、<b>勒索与诈骗页面</b>、<b>隐私越权</b>三类高频风险。
+            应用以「主动防御引擎」为核心常驻后台，配合应用锁、支付保护与沙箱隔离，在威胁触发前完成拦截；同时内置 30+ 项设备与系统工具，覆盖电池、存储、网络、权限审计等日常维护场景。
+          </p>
+          <p class="para small">
+            以下功能说明依据应用内实际组件结构整理，未作额外扩展描述。
+          </p>
+        </section>
+
+        <!-- 核心功能 -->
+        <section class="block reveal">
+          <h2>核心功能</h2>
+          <div class="grid">
+            <div class="card"><span class="ico">🛡️</span><h3>主动防御引擎</h3><p>常驻后台实时扫描，拦截恶意覆盖层与锁屏勒索行为。</p></div>
+            <div class="card"><span class="ico">🔒</span><h3>应用锁</h3><p>为任意应用加锁，进入需验证，防止被他人窥探或篡改。</p></div>
+            <div class="card"><span class="ico">💳</span><h3>支付保护</h3><p>支付场景自动扫描运行环境，识别并阻断假冒支付页面。</p></div>
+            <div class="card"><span class="ico">📵</span><h3>诈骗拦截</h3><p>识别可疑短信、来电与诱导链接，降低被骗风险。</p></div>
+            <div class="card"><span class="ico">🚫</span><h3>广告拦截</h3><p>拦截应用内广告与跟踪组件，减少骚扰与数据外泄。</p></div>
+            <div class="card"><span class="ico">🗄️</span><h3>文件保险箱</h3><p>私密文件加密存放，需验证后才能访问。</p></div>
+            <div class="card"><span class="ico">🔍</span><h3>隐私检查</h3><p>审计已装应用的权限申请，标记高风险项。</p></div>
+            <div class="card"><span class="ico">📦</span><h3>沙箱隔离</h3><p>对可疑应用隔离运行，避免影响真实系统。</p></div>
+            <div class="card"><span class="ico">🧹</span><h3>深度清理</h3><p>清理残留文件与缓存，释放存储空间。</p></div>
+            <div class="card"><span class="ico">🧷</span><h3>防卸载保护</h3><p>借助设备管理器防止防护被恶意卸载或停用。</p></div>
+            <div class="card"><span class="ico">⚡</span><h3>开机自启</h3><p>设备启动即自动加载防护，无需手动开启。</p></div>
+            <div class="card"><span class="ico">🧰</span><h3>工具箱 30+</h3><p>电池、存储、网络、内存、CPU、信号、传感器等实用工具。</p></div>
+          </div>
+        </section>
+
+        <!-- 工具箱 -->
+        <section class="block reveal">
+          <h2>内置工具</h2>
+          <div class="tagwrap">
+            <span class="tag">设备信息</span><span class="tag">电池健康</span><span class="tag">存储分析</span>
+            <span class="tag">网络监控</span><span class="tag">应用管理</span><span class="tag">内存加速</span>
+            <span class="tag">自启管理</span><span class="tag">权限审计</span><span class="tag">WiFi 分析</span>
+            <span class="tag">CPU 监控</span><span class="tag">内存监控</span><span class="tag">信号监控</span>
+            <span class="tag">屏幕检测</span><span class="tag">传感器</span><span class="tag">应用使用统计</span>
+            <span class="tag">通知拦截</span><span class="tag">省电模式</span><span class="tag">音量增强</span>
+            <span class="tag">手电筒</span><span class="tag">计算器</span><span class="tag">单位换算</span>
+            <span class="tag">秒表 / 计时器</span><span class="tag">取色器</span><span class="tag">文字工具</span>
+          </div>
+        </section>
+
+        <!-- 权限说明 -->
+        <section class="block reveal">
+          <h2>权限说明</h2>
+          <div class="perm">
+            <div class="prow"><b>无障碍服务</b><span>识别并阻断恶意锁屏界面，是防锁机的核心能力</span></div>
+            <div class="prow"><b>设备管理器</b><span>防止防护被恶意卸载，保障持续生效</span></div>
+            <div class="prow"><b>悬浮窗</b><span>在危险覆盖层之上弹出警示，避免界面被劫持</span></div>
+            <div class="prow"><b>开机启动</b><span>开机自动加载防护引擎</span></div>
+            <div class="prow"><b>前台服务</b><span>后台常驻运行，维持实时防护</span></div>
+            <div class="prow"><b>应用列表 / 前台任务</b><span>扫描已装应用与当前进程，识别风险来源</span></div>
+            <div class="prow"><b>通知</b><span>推送拦截告警与风险提醒</span></div>
+            <div class="prow"><b>存储读写 / 媒体</b><span>文件保险箱与深度清理所需</span></div>
+            <div class="prow"><b>网络访问 / 网络状态</b><span>云查杀与威胁库更新</span></div>
+            <div class="prow"><b>震动 / 唤醒锁</b><span>告警震动与服务保活</span></div>
+          </div>
+          <p class="para small">共 17 项权限声明，均为防护与工具功能所必需，不含通讯录、短信内容、通话录音等敏感读取。</p>
+        </section>
+
+        <!-- 版本信息 -->
+        <section class="block reveal">
+          <h2>版本信息</h2>
+          <div class="kv">
+            <div><span>包名</span><code>com.guardshield</code></div>
+            <div><span>版本</span><code>5.28（versionCode 53）</code></div>
+            <div><span>安装包</span><code>12.63 MB（13,248,401 字节）</code></div>
+            <div><span>系统要求</span><code>Android 5.0（API 21）起</code></div>
+            <div><span>目标版本</span><code>Android 14（API 34）</code></div>
+            <div><span>组件规模</span><code>71 Activity · 2 Service · 3 Receiver</code></div>
+            <div><span>签名</span><code>GuardKey</code></div>
+            <div><span>SHA256</span><code class="wrap">1c6fdcef7d5efee07ac3f3a2fb31cbbea15399745722f262a4895e956d9f71b9</code></div>
+          </div>
+        </section>
+
+        <!-- 安装指南 -->
+        <section class="block reveal">
+          <h2>安装与启用</h2>
+          <ol class="steps">
+            <li><b>下载 APK</b><span>点击任意下载按钮，获取官方原包。</span></li>
+            <li><b>允许未知来源</b><span>系统设置 → 安全 → 允许来自此来源的应用。</span></li>
+            <li><b>完成安装</b><span>打开文件管理器，点击 APK 并按提示安装。</span></li>
+            <li><b>授予必要权限</b><span>首次启动时按引导开启存储、通知等基础权限。</span></li>
+            <li><b>启用防护核心</b><span>在系统「无障碍」中启用守护盾服务，并激活设备管理器。</span></li>
+            <li><b>设置白名单</b><span>把常用可信应用加入白名单，避免误拦截。</span></li>
+          </ol>
+        </section>
+
+        <!-- 提示 -->
+        <section class="block reveal">
+          <div class="notice">
+            <b>安全提示</b>
+            <p>本页面为第三方分发渠道。安装前请核对上方 SHA256 与官方公布值一致；启用无障碍与设备管理器意味着较高系统权限，请确认来源可信后再授权。</p>
+          </div>
+        </section>
+
+        <footer class="foot">
+          <p>GuardShield 守护盾 · v5.28</p>
+          <button class="replay ripple" id="replay">重播启动动画</button>
+        </footer>
+      </div>
+
+      <!-- 底部安装栏 -->
+      <div class="installbar">
+        <img src="./assets/icon.png" alt="" class="ib-ic">
+        <div class="ib-t"><b>GuardShield 守护盾</b><span>12.63 MB · Android 5.0+</span></div>
+        <a class="ib-btn ripple" href="./GuardShield.apk" download>安装</a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="./assets/app.js"></script>
+</body>
+</html>
