@@ -1,21 +1,9 @@
 (function () {
   'use strict';
 
-  /* ---------- 开机启动动画 ---------- */
-  var LINES = [
-    '[  OK  ] 加载守护内核模块',
-    '[  OK  ] 挂载主动防御引擎',
-    '[  OK  ] 初始化应用锁服务',
-    '[  OK  ] 校验支付保护环境',
-    '[  OK  ] 启动诈骗与广告拦截',
-    '[  OK  ] 装载文件保险箱',
-    '[  OK  ] 防护就绪'
-  ];
-
+  /* ---------- 开机动画（约 1.6s） ---------- */
   var boot = document.getElementById('boot');
-  var logBox = document.getElementById('bootlog');
   var bar = document.getElementById('bootbar');
-  var pct = document.getElementById('bootpct');
   var timers = [];
 
   function clearTimers() {
@@ -27,48 +15,22 @@
     clearTimers();
     boot.classList.remove('done');
     boot.style.display = '';
-    logBox.innerHTML = '';
     bar.style.width = '0%';
-    pct.textContent = '0%';
 
-    var step = 380;
-    LINES.forEach(function (t, i) {
-      timers.push(setTimeout(function () {
-        var p = document.createElement('p');
-        p.textContent = t;
-        p.style.animationDelay = '0s';
-        logBox.appendChild(p);
-      }, 900 + i * step));
-    });
-
-    var total = 900 + LINES.length * step;
-    var ticks = 34;
-    for (var i = 1; i <= ticks; i++) {
-      (function (n) {
-        timers.push(setTimeout(function () {
-          var v = Math.round(Math.pow(n / ticks, 0.82) * 100);
-          bar.style.width = v + '%';
-          pct.textContent = v + '%';
-        }, total * (n / ticks)));
-      })(i);
-    }
-
-    timers.push(setTimeout(function () {
-      pct.textContent = '启动完成';
-    }, total + 220));
+    timers.push(setTimeout(function () { bar.style.width = '100%'; }, 120));
 
     timers.push(setTimeout(function () {
       boot.classList.add('done');
-      timers.push(setTimeout(function () { boot.style.display = 'none'; }, 760));
+      timers.push(setTimeout(function () { boot.style.display = 'none'; }, 460));
       startReveal();
-    }, total + 900));
+    }, 1250));
   }
 
   /* ---------- 内容入场 ---------- */
   function startReveal() {
     var items = document.querySelectorAll('.reveal');
     items.forEach(function (el, i) {
-      setTimeout(function () { el.classList.add('in'); }, 90 * i);
+      setTimeout(function () { el.classList.add('in'); }, 60 * i);
     });
   }
 
@@ -83,14 +45,13 @@
   setInterval(tick, 20000);
 
   /* ---------- 应用栏吸顶 ---------- */
-  var screen = document.getElementById('screen');
   var content = document.querySelector('.content');
   var appbar = document.getElementById('appbar');
   content.addEventListener('scroll', function () {
     appbar.classList.toggle('stuck', content.scrollTop > 40);
   });
 
-  /* ---------- 涟漪 ---------- */
+  /* ---------- 点击反馈 ---------- */
   document.addEventListener('pointerdown', function (e) {
     var t = e.target.closest('.ripple');
     if (!t) return;
@@ -102,7 +63,7 @@
     s.style.left = (e.clientX - r.left - d / 2) + 'px';
     s.style.top = (e.clientY - r.top - d / 2) + 'px';
     t.appendChild(s);
-    setTimeout(function () { s.remove(); }, 600);
+    setTimeout(function () { s.remove(); }, 520);
   });
 
   /* ---------- 重播 ---------- */
@@ -111,7 +72,7 @@
     content.scrollTop = 0;
   });
 
-  /* ---------- 截图自动轮播 ---------- */
+  /* ---------- 截图轮播 ---------- */
   var shots = document.querySelector('.shots');
   if (shots) {
     var idx = 0;
@@ -119,9 +80,8 @@
       if (document.hidden || !shots.clientWidth) return;
       idx = (idx + 1) % shots.children.length;
       shots.scrollTo({ left: idx * (shots.children[0].offsetWidth + 12), behavior: 'smooth' });
-    }, 3600);
+    }, 4000);
   }
 
-  /* ---------- go ---------- */
   runBoot();
 })();
